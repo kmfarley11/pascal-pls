@@ -43,7 +43,7 @@ handleCopy() → navigator.clipboard.writeText(currentQuote) with a small “Cop
 
 I can write that full React component for you in the next message.
 
-## [ ] Step 4 – Apply cozy UI (pink/purple, card, header, about)
+## [x] Step 4 – Apply cozy UI (pink/purple, card, header, about)
 
 Tailwind layout:
 
@@ -55,7 +55,7 @@ Card component with rounded corners and soft shadow.
 
 Add About modal with the attribution text from the PRD.
 
-## [ ] Step 5 – Favicon
+## [x] Step 5 – Favicon
 
 Create a simple custom icon (e.g., scallop/pearl) as favicon.ico / favicon.svg and reference it in index.html.
 

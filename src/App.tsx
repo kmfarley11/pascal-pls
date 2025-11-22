@@ -91,7 +91,13 @@ function App() {
 
   return (
     <main className="min-h-screen bg-linear-to-br from-rose-50 via-white to-violet-50 text-slate-900">
-      <div className="mx-auto flex max-w-3xl flex-col gap-6 px-6 py-16 md:py-20">
+      {/* accessible live region for status messages (e.g., copied) */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {copied ? 'Copied quote to clipboard' : ''}
+      </div>
+
+      <div className="mx-auto flex min-h-screen items-center justify-center px-6">
+        <div className="w-full max-w-3xl flex flex-col gap-6 py-12 md:py-20">
         <header className="flex items-center justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-500">Pascal pls</p>
@@ -109,7 +115,7 @@ function App() {
           </div>
         </header>
 
-        <section className="rounded-3xl border border-slate-200 bg-white/90 p-8 shadow-2xl shadow-rose-100/60 backdrop-blur-sm">
+        <section className="rounded-3xl border border-slate-200 bg-white/90 p-8 shadow-2xl shadow-rose-100/60 backdrop-blur-sm motion-safe:transition-transform motion-safe:duration-500">
           {loading ? (
             <p className="text-lg font-medium text-slate-600">Loading quote…</p>
           ) : error ? (
@@ -134,13 +140,22 @@ function App() {
                   Copy quote
                 </button>
 
-                {copied && <span className="rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700">Copied!</span>}
+                {copied && (
+                  <span
+                    className="rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700 transition-opacity duration-200"
+                    aria-hidden="true"
+                  >
+                    Copied!
+                  </span>
+                )}
               </div>
             </>
           )}
         </section>
 
         <footer className="text-center text-sm text-slate-500">A cozy, fan-made site — unofficial</footer>
+        </div>
+      </div>
 
         {/* About modal */}
         {aboutOpen && (
@@ -178,7 +193,6 @@ function App() {
             </div>
           </div>
         )}
-      </div>
     </main>
   )
 }
