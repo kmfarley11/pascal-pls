@@ -2,17 +2,19 @@
 
 Here’s a clean, small-bites sequence we can follow.
 
-## [ ] Step 1 – Scaffold the project
+## [x] Step 1 – Scaffold the project
 
 In a fresh folder:
 ```bash
-npm create vite@latest pascal-quotes -- --template react-ts
-cd pascal-quotes
+npm create vite@latest pascal-pls -- --template react-ts
+cd pascal-pls
 npm install
 # Add Tailwind
 npm install -D tailwindcss postcss autoprefixer
 #npx tailwindcss init -p  # no longer needed on v4...
 ```
+
+### [ ] init twcss config
 
 Then wire Tailwind into index.css and tailwind.config.js (we can auto-generate these when you’re ready).
 
