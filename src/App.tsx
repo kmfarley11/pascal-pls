@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { loadQuotes, getTodaysQuoteIndex } from './utils/loadQuotes'
 import type { Quote } from './utils/loadQuotes'
 
@@ -8,6 +8,9 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
+  const [aboutOpen, setAboutOpen] = useState(false)
+  const aboutButtonRef = useRef<HTMLButtonElement | null>(null)
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null)
 
   useEffect(() => {
     let mounted = true
@@ -31,6 +34,25 @@ function App() {
       mounted = false
     }
   }, [])
+
+  // Manage focus when About modal opens/closes and handle Escape to close
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setAboutOpen(false)
+    }
+
+    if (aboutOpen) {
+      document.addEventListener('keydown', onKey)
+      // focus the close button when opening
+      requestAnimationFrame(() => closeButtonRef.current?.focus())
+    } else {
+      document.removeEventListener('keydown', onKey)
+      // return focus to the About button
+      requestAnimationFrame(() => aboutButtonRef.current?.focus())
+    }
+
+    return () => document.removeEventListener('keydown', onKey)
+  }, [aboutOpen])
 
   const currentQuote = currentIndex !== null && quotes.length > 0 ? quotes[currentIndex] : ''
 
@@ -62,37 +84,46 @@ function App() {
       await navigator.clipboard.writeText(currentQuote)
       setCopied(true)
       setTimeout(() => setCopied(false), 1500)
-    } catch (e) {
+    } catch {
       setError('Failed to copy to clipboard')
     }
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-violet-50 text-slate-900">
+    <main className="min-h-screen bg-linear-to-br from-rose-50 via-white to-violet-50 text-slate-900">
       <div className="mx-auto flex max-w-3xl flex-col gap-6 px-6 py-16 md:py-20">
         <header className="flex items-center justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-500">Pascal pls</p>
             <h1 className="text-3xl font-bold tracking-tight text-slate-900">Whimsical otter wisdom, one quote at a time.</h1>
           </div>
-          <span className="hidden rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700 md:inline-flex">Tailwind v4 wired</span>
+          <div className="flex items-center gap-3">
+            <button
+              ref={aboutButtonRef}
+              onClick={() => setAboutOpen(true)}
+              className="rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700 hover:bg-rose-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500"
+            >
+              About
+            </button>
+            <span className="hidden rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700 md:inline-flex">Tailwind v4 wired</span>
+          </div>
         </header>
 
-        <section className="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-lg shadow-rose-100/50 backdrop-blur">
+        <section className="rounded-3xl border border-slate-200 bg-white/90 p-8 shadow-2xl shadow-rose-100/60 backdrop-blur-sm">
           {loading ? (
             <p className="text-lg font-medium text-slate-600">Loading quote…</p>
           ) : error ? (
             <p className="text-lg font-medium text-rose-600">{error}</p>
           ) : (
             <>
-              <p className="text-lg font-medium text-slate-800">{currentQuote}</p>
-              <div className="mt-4 flex flex-wrap items-center gap-3">
+              <p className="text-xl md:text-2xl font-semibold text-slate-800 leading-relaxed">“{currentQuote}”</p>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
                 <button
                   onClick={handleShuffle}
                   disabled={quotes.length <= 1}
                   className="rounded-full bg-rose-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-rose-600 disabled:opacity-50"
                 >
-                  Shuffle
+                  Another pearl
                 </button>
 
                 <button
@@ -108,6 +139,45 @@ function App() {
             </>
           )}
         </section>
+
+        <footer className="text-center text-sm text-slate-500">A cozy, fan-made site — unofficial</footer>
+
+        {/* About modal */}
+        {aboutOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6"
+            aria-hidden={!aboutOpen}
+          >
+            <div
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+              onClick={() => setAboutOpen(false)}
+              aria-hidden="true"
+            />
+
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="about-title"
+              className="z-10 max-w-xl rounded-2xl bg-white p-6 shadow-2xl ring-1 ring-slate-100"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h2 id="about-title" className="text-lg font-semibold text-slate-900">About</h2>
+                  <p className="mt-2 text-sm text-slate-700">This is an unofficial fan project inspired by Pascal from Animal Crossing: New Horizons. Animal Crossing and Nintendo Switch are trademarks of Nintendo. This site is not affiliated with or endorsed by Nintendo.</p>
+                </div>
+                <div className="flex items-start">
+                  <button
+                    ref={closeButtonRef}
+                    onClick={() => setAboutOpen(false)}
+                    className="ml-4 rounded-full bg-rose-50 px-3 py-1 text-sm font-semibold text-rose-700 hover:bg-rose-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </main>
   )

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Fan-made scallop character with pearl">
+  <defs>
+    <linearGradient id="shellGrad" x1="0" x2="1">
+      <stop offset="0" stop-color="#ffdbe9"/>
+      <stop offset="1" stop-color="#eadbff"/>
+    </linearGradient>
+    <linearGradient id="pearlGrad" x1="0" x2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f3f0ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- stylized scallop shell (simple, original shapes) -->
+  <g transform="translate(0,2)">
+    <path d="M32 6c9 0 16 8 20 14-4 6-11 14-20 14S16 26 12 20C16 14 23 6 32 6z"
+          fill="url(#shellGrad)" stroke="#f7c6da" stroke-width="1.2"/>
+
+    <!-- subtle ridges (abstract, not copied from any sprite) -->
+    <g fill="none" stroke="#f1a8c0" stroke-width="0.9" opacity="0.9">
+      <path d="M18 18c5 6 9 8 14 8s9-2 14-8"/>
+      <path d="M22 22c4 4 7 6 10 6s6-2 10-6"/>
+    </g>
+
+    <!-- gentle shadow under the shell -->
+    <ellipse cx="32" cy="40" rx="18" ry="6" fill="#000" opacity="0.04"/>
+
+    <!-- pearl with soft highlight -->
+    <circle cx="32" cy="26" r="6.5" fill="url(#pearlGrad)" stroke="#efeaff" stroke-width="0.8"/>
+    <path d="M29.8 24.5c.6-.8 1.8-1.6 3.2-1.2" fill="none" stroke="#fff8ff" stroke-width="0.9" opacity="0.9" stroke-linecap="round"/>
+
+    <!-- friendly, minimal face: two eyes and a little wisdom mark (evocative, not a copy) -->
+    <g fill="#2b2b2b" opacity="0.95">
+      <circle cx="29" cy="26" r="1.2"/>
+      <circle cx="35" cy="26" r="1.2"/>
+    </g>
+    <path d="M30 30c1.2.9 2.8.9 4 0" stroke="#2b2b2b" stroke-width="0.9" stroke-linecap="round" fill="none" opacity="0.95"/>
+
+    <!-- small contemplative curl (abstract 'mustache-like' flourish, original) -->
+    <path d="M39 28c.6-.2 1.4-.6 2-.8" stroke="#f1a8c0" stroke-width="0.8" fill="none" opacity="0.9" stroke-linecap="round"/>
+  </g>
+</svg>

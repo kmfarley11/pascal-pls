@@ -1,4 +1,5 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
 
 @layer base {
   :root {
@@ -17,3 +18,5 @@
     min-height: 100vh;
   }
 }
+
+/* TEMP: Visual test removed — outline cleared. */

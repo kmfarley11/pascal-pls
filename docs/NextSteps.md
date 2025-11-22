@@ -5,6 +5,7 @@ Here’s a clean, small-bites sequence we can follow.
 ## [x] Step 1 – Scaffold the project
 
 In a fresh folder:
+
 ```bash
 npm create vite@latest pascal-pls -- --template react-ts
 cd pascal-pls
@@ -28,7 +29,7 @@ We’ll treat it as the single source of truth.
 
 I can next generate the exact loadQuotes helper and the associated TypeScript types (very small).
 
-## Step 3 – Implement core logic (today’s quote + shuffle + copy)
+## [x] Step 3 – Implement core logic (today’s quote + shuffle + copy)
 
 We’ll add in App.tsx:
 
