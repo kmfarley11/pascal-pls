@@ -14,7 +14,7 @@ npm install -D tailwindcss postcss autoprefixer
 #npx tailwindcss init -p  # no longer needed on v4...
 ```
 
-### [ ] init twcss config
+### [x] init twcss config
 
 Then wire Tailwind into index.css and tailwind.config.js (we can auto-generate these when you’re ready).
 
