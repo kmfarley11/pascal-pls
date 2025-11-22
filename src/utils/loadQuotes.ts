@@ -29,3 +29,18 @@ export async function loadQuotes(path = DEFAULT_QUOTES_PATH): Promise<QuotesResu
 
   return { quotes }
 }
+
+/**
+ * Deterministically pick an index for "today" based on the UTC date.
+ * This ensures the same quote is chosen for all users on the same day.
+ */
+export function getTodaysQuoteIndex(quotes: Quote[], date = new Date()): number {
+  if (!quotes || quotes.length === 0) return 0
+
+  // Use UTC date components so timezone differences don't change the selection.
+  const utcDays = Math.floor(
+    Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()) / 86400000,
+  )
+
+  return Math.abs(utcDays) % quotes.length
+}
