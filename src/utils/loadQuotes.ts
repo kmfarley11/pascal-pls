@@ -4,7 +4,7 @@ export interface QuotesResult {
   quotes: Quote[]
 }
 
-const DEFAULT_QUOTES_PATH = '/quotes.txt'
+const DEFAULT_QUOTES_PATH = '/pascal-pls/quotes.txt'
 
 /**
  * Fetches the newline-delimited quotes file and returns a clean list of quotes.

@@ -61,7 +61,7 @@ Create a simple custom icon (e.g., scallop/pearl) as favicon.ico / favicon.svg a
 
 I can give you a simple emoji-based fallback or an SVG you can tweak.
 
-## [ ] Step 6 – GitHub Pages deploy
+## [x] Step 6 – GitHub Pages deploy
 
 Add homepage / base config if needed.
 
