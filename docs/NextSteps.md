@@ -18,7 +18,7 @@ npm install -D tailwindcss postcss autoprefixer
 
 Then wire Tailwind into index.css and tailwind.config.js (we can auto-generate these when you’re ready).
 
-## [ ] Step 2 – Add quotes.txt data source
+## [x] Step 2 – Add quotes.txt data source
 
 Create public/quotes.txt.
 
