@@ -111,7 +111,7 @@ function App() {
             >
               About
             </button>
-            <span className="hidden rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700 md:inline-flex">Tailwind v4 wired</span>
+            {/* <span className="hidden rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700 md:inline-flex">Tailwind v4 wired</span> */}
           </div>
         </header>
 
@@ -153,7 +153,7 @@ function App() {
           )}
         </section>
 
-        <footer className="text-center text-sm text-slate-500">A cozy, fan-made site — unofficial</footer>
+        <footer className="text-center text-sm text-slate-500">A cozy, fan-made site — unofficial.<br></br>For loml Jessica 💜</footer>
         </div>
       </div>
 
