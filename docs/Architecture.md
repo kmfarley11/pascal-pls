@@ -29,7 +29,7 @@ Renders the text in a cozy pastel card.
 
 src/components/ControlsBar.tsx
 
-Buttons: “Another pearl”, “Copy quote”, maybe an “About” icon.
+Buttons: “Give another scallop”, “Copy quote”, maybe an “About” icon.
 
 Emits callbacks: onShuffle, onCopy, onShowAbout.
 

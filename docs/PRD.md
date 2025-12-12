@@ -44,7 +44,7 @@ Flows:
 
 Landing: On load, show deterministic “today’s quote” based on the date.
 
-Shuffle: “Another pearl” button → show a different quote (random; don’t have to guarantee no-repeat in v1).
+Shuffle: “Give another scallop” button → show a different quote (random; don’t have to guarantee no-repeat in v1).
 
 Copy: “Copy quote” button → copy quote text (optionally with attribution suffix) to clipboard, and show a brief visual confirmation.
 

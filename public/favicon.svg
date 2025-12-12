@@ -1,18 +1,83 @@
 <!-- public/favicon.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+    <!-- Background gradient (same palette) -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#f9a8d4" />
       <stop offset="100%" stop-color="#c4b5fd" />
     </linearGradient>
+
+    <!-- Shell fill gradient (same palette family) -->
+    <radialGradient id="shell" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#fdf2f8" />
+      <stop offset="100%" stop-color="#fbcfe8" />
+    </radialGradient>
+
+    <!-- Top-down scallop silhouette: a fan with a scalloped edge -->
+    <path
+      id="scallopTop"
+      d="
+        M32 10
+        C26 10, 20 14, 17 20
+        C14 26, 14 34, 17 40
+        C20 46, 26 51, 32 54
+        C38 51, 44 46, 47 40
+        C50 34, 50 26, 47 20
+        C44 14, 38 10, 32 10
+        Z
+
+        M18 40
+        C19.5 43.5, 23 47.5, 27 50
+        C25.5 49, 24 48, 22.5 46.5
+        C20.7 44.7, 19.1 42.5, 18 40
+        Z
+
+        M46 40
+        C44.9 42.5, 43.3 44.7, 41.5 46.5
+        C40 48, 38.5 49, 37 50
+        C41 47.5, 44.5 43.5, 46 40
+        Z
+      "
+    />
+
+    <!-- Clip ribs to the shell silhouette -->
+    <clipPath id="clipShell">
+      <use href="#scallopTop" />
+    </clipPath>
   </defs>
+
+  <!-- Rounded app icon background -->
   <rect width="64" height="64" rx="16" fill="url(#bg)" />
-  <circle cx="32" cy="36" r="10" fill="#fdf2f8" />
+
+  <!-- Shell body -->
+  <use href="#scallopTop" fill="url(#shell)" />
+
+  <!-- Outline -->
+  <use href="#scallopTop" fill="none" stroke="#f472b6" stroke-width="2" opacity="0.7" />
+
+  <!-- Radial ribs (top-down), clipped inside -->
+  <g clip-path="url(#clipShell)" stroke="#f472b6" stroke-width="2" stroke-linecap="round" opacity="0.85" fill="none">
+    <!-- spokes -->
+    <path d="M32 14 L32 52" />
+    <path d="M28 14 L26 51" />
+    <path d="M36 14 L38 51" />
+    <path d="M24 16 L21 48" />
+    <path d="M40 16 L43 48" />
+    <path d="M20 20 L16.5 43" />
+    <path d="M44 20 L47.5 43" />
+
+    <!-- subtle inner arcs for texture -->
+    <path d="M20 34 C24 42, 28 46, 32 48 C36 46, 40 42, 44 34" opacity="0.55" />
+    <path d="M22 28 C25 34, 29 38, 32 40 C35 38, 39 34, 42 28" opacity="0.55" />
+  </g>
+
+  <!-- Hinge highlight (top notch) -->
   <path
-    d="M18 30c3-7 8-11 14-11s11 4 14 11"
+    d="M26 12 C28.5 10.5, 30.5 10, 32 10 C33.5 10, 35.5 10.5, 38 12"
     fill="none"
     stroke="#fdf2f8"
     stroke-width="3"
     stroke-linecap="round"
+    opacity="0.9"
   />
 </svg>
