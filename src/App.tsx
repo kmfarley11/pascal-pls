@@ -127,15 +127,15 @@ function App() {
                 <button
                   onClick={handleShuffle}
                   disabled={quotes.length <= 1}
-                  className="inline-flex items-center rounded-full bg-rose-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-rose-600 disabled:opacity-50"
+                  className="inline-flex items-center rounded-full bg-rose-100 px-4 py-2 text-sm font-semibold text-rose-700 shadow-sm transition hover:bg-rose-200 disabled:opacity-50"
                 >
-                  <span>Give another</span>
-                  <img
-                    src="favicon.svg"
-                    alt="logo"
+                  <span>Give another scallop</span>
+                  {/* <img
+                    src="scallop.svg"
+                    alt=""
                     className="ml-2 h-5 w-5"
                     aria-hidden="true"
-                  />
+                  /> */}
                 </button>
 
                 <button
