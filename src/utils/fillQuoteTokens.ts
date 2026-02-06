@@ -38,12 +38,40 @@ const TOKEN_MAP: Record<string, string[]> = {
     'wind-up robot',
     'toy astronaut',
   ],
+  'doing random hobby': [
+    'whittling driftwood',
+    'painting tiny canvases',
+    'journaling in the park',
+    'building bottle rockets',
+    'tying fishing flies',
+    'folding origami cranes',
+    'pressing wildflowers',
+    'sketching street corners',
+    'throwing pottery',
+    'geocaching for trinkets',
+    'learning yo-yo tricks',
+  ],
+  'a native fruit': [
+    'huckleberry',
+    'pawpaw',
+    'salmonberry',
+    'mayhaw',
+    'serviceberry',
+    'prickly pear',
+    'concord grape',
+    'wild blueberry',
+    'chokecherry',
+    'muscadine',
+    'persimmon',
+  ],
 }
 
 const FALLBACKS: Record<string, string> = {
   'random sweet food': 'sweet treat',
   'random savory food': 'savory snack',
   'random object': 'trinket',
+  'doing random hobby': 'doing a hobby',
+  'a native fruit': 'fruit',
 }
 
 function chooseRandom<T>(items: T[], random: () => number): T | undefined {
@@ -64,4 +92,3 @@ export function fillQuoteTokens(quote: string, random: () => number = Math.rando
     return pick
   })
 }
-
