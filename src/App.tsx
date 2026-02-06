@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { loadQuotes, getTodaysQuoteIndex } from './utils/loadQuotes'
 import type { Quote } from './utils/loadQuotes'
-import { fillRandomSweetFood } from './utils/randomSweetFood'
+import { fillQuoteTokens } from './utils/randomSweetFood'
 
 function App() {
   const [quotes, setQuotes] = useState<Quote[]>([])
@@ -56,7 +56,7 @@ function App() {
   }, [aboutOpen])
 
   const currentQuote = currentIndex !== null && quotes.length > 0 ? quotes[currentIndex] : ''
-  const renderedQuote = fillRandomSweetFood(currentQuote)
+  const renderedQuote = fillQuoteTokens(currentQuote)
 
   function handleShuffle() {
     if (quotes.length <= 1) return
