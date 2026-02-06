@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { loadQuotes, getTodaysQuoteIndex } from './utils/loadQuotes'
 import type { Quote } from './utils/loadQuotes'
+import { fillRandomSweetFood } from './utils/randomSweetFood'
 
 function App() {
   const [quotes, setQuotes] = useState<Quote[]>([])
@@ -55,6 +56,7 @@ function App() {
   }, [aboutOpen])
 
   const currentQuote = currentIndex !== null && quotes.length > 0 ? quotes[currentIndex] : ''
+  const renderedQuote = fillRandomSweetFood(currentQuote)
 
   function handleShuffle() {
     if (quotes.length <= 1) return
@@ -79,9 +81,9 @@ function App() {
   }
 
   async function handleCopy() {
-    if (!currentQuote) return
+    if (!renderedQuote) return
     try {
-      await navigator.clipboard.writeText(currentQuote)
+      await navigator.clipboard.writeText(renderedQuote)
       setCopied(true)
       setTimeout(() => setCopied(false), 1500)
     } catch {
@@ -122,7 +124,7 @@ function App() {
             <p className="text-lg font-medium text-rose-600">{error}</p>
           ) : (
             <>
-              <p className="text-xl md:text-2xl font-semibold text-slate-800 leading-relaxed">“{currentQuote}”</p>
+              <p className="text-xl md:text-2xl font-semibold text-slate-800 leading-relaxed">“{renderedQuote}”</p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <button
                   onClick={handleShuffle}
