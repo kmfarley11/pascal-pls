@@ -4,13 +4,13 @@ const TOKEN_MAP: Record<string, string[]> = {
     'churro',
     'donut',
     'macaron',
-    'maple fudge',
+    'fudge',
     'milkshake',
     'mochi',
     'peanut brittle',
     'brownie',
     'cheesecake',
-    'caramel apple',
+    'chocolate',
   ],
   'random savory food': [
     'garlic knot',
@@ -20,7 +20,7 @@ const TOKEN_MAP: Record<string, string[]> = {
     'stuffed mushroom',
     'spinach artichoke dip',
     'empanada',
-    'mini quiche',
+    'quiche',
     'potato wedge',
     'fried pickle',
     'pigs in a blanket',
@@ -29,7 +29,7 @@ const TOKEN_MAP: Record<string, string[]> = {
     'rubber duck',
     'pocket compass',
     'lucky pebble',
-    'tiny lighthouse',
+    'lighthouse',
     'shoelace bow',
     'paperclip chain',
     'pocket notebook',
@@ -50,15 +50,6 @@ function chooseRandom<T>(items: T[], random: () => number): T | undefined {
   if (!items.length) return undefined
   const index = Math.floor(random() * items.length)
   return items[index]
-}
-
-/**
- * Return a random sweet treat from a small, cozy list.
- * Kept for backwards compatibility.
- */
-export function getRandomSweetFood(random: () => number = Math.random): string {
-  const pick = chooseRandom(TOKEN_MAP['random sweet food'], random)
-  return pick ?? FALLBACKS['random sweet food']
 }
 
 /**

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { loadQuotes, getTodaysQuoteIndex } from './utils/loadQuotes'
 import type { Quote } from './utils/loadQuotes'
-import { fillQuoteTokens } from './utils/randomSweetFood'
+import { fillQuoteTokens } from './utils/fillQuoteTokens'
 
 function App() {
   const [quotes, setQuotes] = useState<Quote[]>([])
